@@ -1,0 +1,5 @@
+# Executive Productivity Agent Dependencies
+# Core application runs on Python 3.10+ standard library (zero installation overhead)
+# Optional presentation & development libraries:
+python-pptx>=0.6.23
+pytest>=8.0.0

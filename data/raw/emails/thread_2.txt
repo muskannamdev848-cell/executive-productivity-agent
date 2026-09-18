@@ -1,0 +1,14 @@
+Mon 21 Sep, 11:00 AM — From: neha.kapoor@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Deck’s coming together, still targeting Wednesday for your review.”
+
+Tue 22 Sep, 4:15 PM — From: neha.kapoor@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Heads up — shifting the review to Thursday morning instead of Wednesday, need one more day on the data slides.”
+
+Wed 23 Sep, 10:00 AM — From: arjun.malhotra@veridian-corp.example — To: neha.kapoor@veridian-corp.example
+“Understood, Thursday morning works. What time exactly?”
+
+Wed 23 Sep, 10:20 AM — From: neha.kapoor@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Let’s say 9:30 AM Thursday, before your board prep block.”
+
+Thu 24 Sep, 8:00 AM — From: neha.kapoor@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Deck is ready, attaching the draft ahead of our 9:30 review.”

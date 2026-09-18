@@ -1,0 +1,34 @@
+[
+  {
+    "id": "act-59d09415",
+    "task": "\u201cQuick note to self \u2014 need to get Raghav that vendor list, I think I said today but it might slip to tomorrow morning, remind me",
+    "owner": "Arjun Malhotra",
+    "ownership_category": "My Action",
+    "counterparty": "Raghav",
+    "raw_deadline": "today",
+    "normalized_deadline": "2026-09-18",
+    "urgency_status": "Due Today",
+    "priority": "High",
+    "status": "Pending",
+    "sources": [
+      {
+        "channel": "Voice Note",
+        "source_id": "Voice Note 1",
+        "timestamp_or_date": "2026-09-18",
+        "author_or_speaker": "Arjun Malhotra",
+        "verbatim_quote": "\u201cQuick note to self \u2014 need to get Raghav that vendor list, I think I said today but it might slip to tomorrow morning, remind me",
+        "context": "Recorded in Voice Note 1"
+      },
+      {
+        "channel": "Voice Note",
+        "source_id": "Voice Note 2",
+        "timestamp_or_date": "2026-09-18",
+        "author_or_speaker": "Arjun Malhotra",
+        "verbatim_quote": "Also Meridian call \u2014 I owe Priya a time, need to lock that in today.\u201d",
+        "context": "Recorded in Voice Note 2"
+      }
+    ],
+    "conflict_notes": null,
+    "flagged_unclear": false
+  }
+]

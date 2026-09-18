@@ -1,0 +1,14 @@
+Mon 21 Sep, 1:00 PM — From: priya.nair@meridianlogistics.example — To: arjun.malhotra@veridian-corp.example
+“Our scheduled call this week got bumped from our side — can you propose a new time? We’re flexible Tuesday–Thursday afternoons.”
+
+Tue 22 Sep, 3:00 PM — From: arjun.malhotra@veridian-corp.example — To: priya.nair@meridianlogistics.example
+“Apologies for the delay — how about Wednesday 3:00 PM?”
+
+Tue 22 Sep, 5:45 PM — From: priya.nair@meridianlogistics.example — To: arjun.malhotra@veridian-corp.example
+“Wednesday 3 PM works on our end, confirmed.”
+
+Wed 23 Sep, 1:30 PM — From: priya.nair@meridianlogistics.example — To: arjun.malhotra@veridian-corp.example
+“Quick check — still on for 3 PM today?”
+
+Wed 23 Sep, 2:00 PM — From: arjun.malhotra@veridian-corp.example — To: priya.nair@meridianlogistics.example
+“Yes, confirmed, see you at 3.”

@@ -1,0 +1,14 @@
+Mon 21 Sep, 2:30 PM — From: divya.rao@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Starting on the July variance numbers, targeting Thursday morning for board prep as discussed.”
+
+Tue 22 Sep, 9:00 AM — From: arjun.malhotra@veridian-corp.example — To: divya.rao@veridian-corp.example
+“Actually, can I get it by Wednesday evening instead? Want time to review before Thursday.”
+
+Tue 22 Sep, 9:40 AM — From: divya.rao@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Wednesday evening is tight but doable, I’ll prioritize it.”
+
+Wed 23 Sep, 6:00 PM — From: divya.rao@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Report attached, sent as promised.”
+
+Wed 23 Sep, 6:10 PM — From: arjun.malhotra@veridian-corp.example — To: divya.rao@veridian-corp.example
+“Got it, thank you — exactly what I needed before tomorrow.”

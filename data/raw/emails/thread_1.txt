@@ -1,0 +1,14 @@
+Mon 21 Sep, 9:50 AM — From: raghav.sethi@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Following up from the sync — can you send the updated vendor list today?”
+
+Mon 21 Sep, 5:40 PM — From: arjun.malhotra@veridian-corp.example — To: raghav.sethi@veridian-corp.example
+“Running behind, will send first thing tomorrow morning instead.”
+
+Tue 22 Sep, 9:15 AM — From: raghav.sethi@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“No worries, whenever you get a chance today works.”
+
+Tue 22 Sep, 6:30 PM — From: arjun.malhotra@veridian-corp.example — To: raghav.sethi@veridian-corp.example
+“Sorry, got pulled into board prep — will send by tomorrow (Wednesday) morning for sure.”
+
+Wed 23 Sep, 8:45 AM — From: raghav.sethi@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“Just checking — still good for this morning?”

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Productivity Agent | Arjun Malhotra (VP Sales)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.4);
+    }
+    .badge-unclear {
+      background-color: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans antialiased overflow-hidden">
+
+  <!-- Top Executive Header -->
+  <header class="border-b border-slate-800 bg-slate-900/90 px-6 py-3 flex items-center justify-between z-20">
+    <div class="flex items-center space-x-4">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+        <i class="fa-solid fa-briefcase"></i>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-base font-semibold text-white tracking-tight">Executive Productivity Agent</h1>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-medium">AIONOS AI Factory</span>
+        </div>
+        <p class="text-xs text-slate-400">Arjun Malhotra &bull; VP Sales &bull; Daily Action Intelligence</p>
+      </div>
+    </div>
+
+    <!-- Data Pack Status Banner -->
+    <div class="flex items-center space-x-4">
+      <div id="data-status-badge" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg border text-xs">
+        <span class="w-2 h-2 rounded-full animate-pulse bg-amber-400"></span>
+        <span id="data-status-text" class="text-slate-300 font-medium">Checking Data Pack...</span>
+      </div>
+      <button onclick="openIngestionModal()" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition shadow flex items-center space-x-2">
+        <i class="fa-solid fa-file-arrow-up"></i>
+        <span>Load / Edit Assignment Data</span>
+      </button>
+      <button onclick="refreshData()" title="Re-process sources" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700 transition">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container with Sidebar & Content -->
+  <div class="flex-1 flex overflow-hidden">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 border-r border-slate-800 bg-slate-900/60 flex flex-col justify-between p-4 z-10">
+      <div class="space-y-1">
+        <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400 px-3 mb-2">Navigation</div>
+        
+        <button onclick="switchView('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white bg-indigo-600/20 border border-indigo-500/30 transition">
+          <i class="fa-solid fa-chart-pie w-4 text-indigo-400"></i>
+          <span>Dashboard</span>
+        </button>
+
+        <button onclick="switchView('inputs')" id="nav-inputs" class="nav-btn w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+          <i class="fa-solid fa-inbox w-4 text-slate-400"></i>
+          <span>Input Intelligence</span>
+        </button>
+
+        <button onclick="switchView('actions')" id="nav-actions" class="nav-btn w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+          <i class="fa-solid fa-list-check w-4 text-slate-400"></i>
+          <span>Action Items</span>
+        </button>
+
+        <button onclick="switchView('evidence')" id="nav-evidence" class="nav-btn w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+          <i class="fa-solid fa-magnifying-glass-chart w-4 text-slate-400"></i>
+          <span>Evidence Audit</span>
+        </button>
+
+        <button onclick="switchView('qa')" id="nav-qa" class="nav-btn w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition">
+          <i class="fa-solid fa-robot w-4 text-indigo-400"></i>
+          <span>Grounded Q&A</span>
+        </button>
+      </div>
+
+      <!-- Footer Context Card -->
+      <div class="glass-panel p-3 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-1.5">
+        <div class="flex items-center justify-between">
+          <span class="font-medium text-slate-300">Grounding Policy</span>
+          <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">Active</span>
+        </div>
+        <p class="text-[11px] leading-relaxed text-slate-400">
+          Strict extraction mode. Zero invented facts, contacts, or deadlines.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 bg-slate-950 overflow-y-auto p-6" id="main-content">
+      
+      <!-- ================= VIEW 1: DASHBOARD ================= -->
+      <div id="view-dashboard" class="space-y-6">
+        
+        <!-- Welcome / Brief Banner -->
+        <div class="glass-panel p-5 rounded-2xl border border-slate-800 relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center space-x-3">
+                <h2 class="text-xl font-bold text-white tracking-tight">Daily Action Brief</h2>
+                <span id="brief-ref-date" class="text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">Ref: 2026-09-18</span>
+              </div>
+              <p id="brief-summary-text" class="mt-2 text-sm text-slate-300 max-w-3xl leading-relaxed">
+                Loading executive summary...
+              </p>
+            </div>
+            <button onclick="switchView('qa')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition flex items-center space-x-2">
+              <i class="fa-solid fa-comments text-indigo-400"></i>
+              <span>Ask Agent</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+            <span class="text-xs font-medium text-slate-400">Today's Priorities</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span id="metric-priorities" class="text-2xl font-bold text-rose-400">0</span>
+              <i class="fa-solid fa-fire text-rose-500/40 text-lg"></i>
+            </div>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+            <span class="text-xs font-medium text-slate-400">My Commitments</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span id="metric-commitments" class="text-2xl font-bold text-indigo-400">0</span>
+              <i class="fa-solid fa-handshake text-indigo-500/40 text-lg"></i>
+            </div>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+            <span class="text-xs font-medium text-slate-400">Waiting on Others</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span id="metric-waiting" class="text-2xl font-bold text-amber-400">0</span>
+              <i class="fa-solid fa-clock-rotate-left text-amber-500/40 text-lg"></i>
+            </div>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+            <span class="text-xs font-medium text-slate-400">Calendar Conflicts</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span id="metric-conflicts" class="text-2xl font-bold text-orange-400">0</span>
+              <i class="fa-solid fa-calendar-xmark text-orange-500/40 text-lg"></i>
+            </div>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+            <span class="text-xs font-medium text-slate-400">Unclear Ownership</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span id="metric-unclear" class="text-2xl font-bold text-purple-400">0</span>
+              <i class="fa-solid fa-circle-question text-purple-500/40 text-lg"></i>
+            </div>
+          </div>
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+            <span class="text-xs font-medium text-slate-400">Sources Loaded</span>
+            <div class="flex items-baseline justify-between mt-2">
+              <span id="metric-sources" class="text-2xl font-bold text-emerald-400">0 / 11</span>
+              <i class="fa-solid fa-database text-emerald-500/40 text-lg"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Core Sections: Urgent Items & Conflicts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Urgent Priorities & Due Items -->
+          <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                <h3 class="text-sm font-semibold text-white">Priority & Due Actions</h3>
+              </div>
+              <button onclick="switchView('actions')" class="text-xs text-indigo-400 hover:text-indigo-300">View All &rarr;</button>
+            </div>
+            <div id="dash-priorities-list" class="space-y-3 flex-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Calendar Conflicts & Alignment -->
+          <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                <h3 class="text-sm font-semibold text-white">Schedule Conflicts & Overlaps</h3>
+              </div>
+              <span class="text-xs text-slate-400">Deterministic check</span>
+            </div>
+            <div id="dash-conflicts-list" class="space-y-3 flex-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- My Actions vs Waiting On Others -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- My Commitments -->
+          <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-user-check text-indigo-400 text-sm"></i>
+                <h3 class="text-sm font-semibold text-white">My Commitments (Arjun Malhotra)</h3>
+              </div>
+              <span id="dash-my-count" class="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded border border-indigo-500/20">0 items</span>
+            </div>
+            <div id="dash-commitments-list" class="space-y-3 flex-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Waiting On Others -->
+          <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-hourglass-half text-amber-400 text-sm"></i>
+                <h3 class="text-sm font-semibold text-white">Follow-ups (Waiting on Others)</h3>
+              </div>
+              <span id="dash-waiting-count" class="text-xs bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">0 items</span>
+            </div>
+            <div id="dash-waiting-list" class="space-y-3 flex-1">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= VIEW 2: INPUT INTELLIGENCE ================= -->
+      <div id="view-inputs" class="space-y-6 hidden">
+        <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-lg font-bold text-white">Assignment Data Sources & Ingestion Monitor</h2>
+              <p class="text-xs text-slate-400 mt-1">
+                Monitors all 11 raw source channels from the AIONOS assignment data pack. Only loaded files are parsed.
+              </p>
+            </div>
+            <button onclick="openIngestionModal()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition">
+              <i class="fa-solid fa-pen-to-square mr-1"></i> Edit / Paste Source Data
+            </button>
+          </div>
+        </div>
+
+        <!-- Ingestion Pipeline Flow Diagram -->
+        <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+          <h3 class="text-xs font-semibold uppercase text-slate-400 mb-4 tracking-wider">Extraction & Deduplication Pipeline</h3>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+              <span class="font-semibold text-indigo-400">1. Channel Intake</span>
+              <p class="text-slate-400 text-[11px]">Transcripts, 5 emails, 2 voice notes, and master calendars.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+              <span class="font-semibold text-indigo-400">2. Commitment Extraction</span>
+              <p class="text-slate-400 text-[11px]">Strict intent recognition + verbatim evidence capture.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+              <span class="font-semibold text-indigo-400">3. Deduplication</span>
+              <p class="text-slate-400 text-[11px]">Clusters duplicate mentions across channels into single items.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+              <span class="font-semibold text-indigo-400">4. Brief Synthesis</span>
+              <p class="text-slate-400 text-[11px]">Categorizes into My Actions, Waiting On, and Unclear.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sources Grid -->
+        <div id="sources-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically populated with 11 source cards -->
+        </div>
+      </div>
+
+      <!-- ================= VIEW 3: ACTIONS ================= -->
+      <div id="view-actions" class="space-y-6 hidden">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-bold text-white">Executive Action Cards</h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Grounded actions extracted from the assignment data pack with direct audit trail linkage.
+            </p>
+          </div>
+          <!-- Filter Buttons -->
+          <div class="flex items-center space-x-2 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+            <button onclick="filterActions('all')" id="filter-all" class="action-filter-btn px-3 py-1.5 rounded-lg font-medium bg-indigo-600 text-white">All</button>
+            <button onclick="filterActions('My Action')" id="filter-my" class="action-filter-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white">My Actions</button>
+            <button onclick="filterActions('Waiting on Others')" id="filter-waiting" class="action-filter-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white">Waiting On Others</button>
+            <button onclick="filterActions('Unclear Ownership')" id="filter-unclear" class="action-filter-btn px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white">Unclear</button>
+          </div>
+        </div>
+
+        <!-- Action Cards Grid -->
+        <div id="action-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ================= VIEW 4: EVIDENCE AUDIT ================= -->
+      <div id="view-evidence" class="space-y-6 hidden">
+        <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+          <h2 class="text-lg font-bold text-white">Source Evidence & Traceability Audit</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Every extracted item must trace back to verbatim text in the raw source files. Review direct quotes and context below.
+          </p>
+        </div>
+
+        <div id="evidence-audit-list" class="space-y-4">
+          <!-- Dynamically populated with full evidence citations -->
+        </div>
+      </div>
+
+      <!-- ================= VIEW 5: GROUNDED Q&A ================= -->
+      <div id="view-qa" class="space-y-6 hidden">
+        
+        <!-- Preset Prompt Bar -->
+        <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Clickable Preset Questions</span>
+            <span class="text-[11px] text-emerald-400"><i class="fa-solid fa-shield-halved mr-1"></i> Strictly Grounded</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+            <button onclick="askPreset('What did I promise?')" class="p-3 text-left rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/40 text-xs font-medium text-slate-200 transition">
+              <i class="fa-solid fa-handshake text-indigo-400 mr-1.5"></i>
+              "What did I promise?"
+            </button>
+            <button onclick="askPreset('What needs action today?')" class="p-3 text-left rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/40 text-xs font-medium text-slate-200 transition">
+              <i class="fa-solid fa-calendar-day text-rose-400 mr-1.5"></i>
+              "What needs action today?"
+            </button>
+            <button onclick="askPreset('What commitments are due?')" class="p-3 text-left rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/40 text-xs font-medium text-slate-200 transition">
+              <i class="fa-solid fa-clock text-amber-400 mr-1.5"></i>
+              "What commitments are due?"
+            </button>
+            <button onclick="askPreset('What are the conflicts?')" class="p-3 text-left rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/40 text-xs font-medium text-slate-200 transition">
+              <i class="fa-solid fa-triangle-exclamation text-orange-400 mr-1.5"></i>
+              "What are the conflicts?"
+            </button>
+          </div>
+        </div>
+
+        <!-- Conversation History Area -->
+        <div id="qa-chat-history" class="space-y-4 min-h-[300px]">
+          <!-- Chat messages rendered here -->
+          <div class="glass-panel p-4 rounded-xl border border-slate-800 text-xs text-slate-400 flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-indigo-600/30 flex items-center justify-center text-indigo-400 font-bold shrink-0">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-200 mb-1">Executive Productivity Agent</div>
+              <p class="leading-relaxed">
+                Hello Arjun. I am strictly grounded in the loaded assignment data pack. You can click any preset question above or enter a question below (e.g. <em>"What did I promise Raghav?"</em>). If source data is not loaded or evidence is not present, I will explicitly notify you rather than making assumptions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question Input Bar -->
+        <div class="flex items-center space-x-2 pt-2">
+          <input type="text" id="qa-custom-input" placeholder="Ask a grounded question about commitments, actions, or conflicts..." 
+                 class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
+                 onkeydown="if(event.key === 'Enter') submitCustomQuestion()">
+          <button onclick="submitCustomQuestion()" class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition shadow flex items-center space-x-2">
+            <span>Ask</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ================= SLIDE-OVER / EVIDENCE DRAWER ================= -->
+  <div id="evidence-drawer" class="fixed inset-0 z-50 transition-opacity duration-300 hidden">
+    <!-- Backdrop -->
+    <div onclick="closeEvidenceDrawer()" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <!-- Drawer Panel -->
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-lg bg-slate-900 border-l border-slate-800 shadow-2xl p-6 overflow-y-auto flex flex-col justify-between">
+      <div class="space-y-5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-file-lines text-indigo-400"></i>
+            <h3 class="text-sm font-bold text-white">Source Evidence Drawer</h3>
+          </div>
+          <button onclick="closeEvidenceDrawer()" class="text-slate-400 hover:text-white text-base">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div id="drawer-task-info" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+          <span class="text-[10px] uppercase font-semibold text-slate-400">Action Item</span>
+          <p id="drawer-task-title" class="font-medium text-slate-200"></p>
+        </div>
+
+        <div class="space-y-3">
+          <span class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Verbatim Source Citations</span>
+          <div id="drawer-citations-list" class="space-y-3">
+            <!-- Dynamic citations injected here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-slate-800">
+        <div class="text-[11px] text-slate-400 flex items-center justify-between">
+          <span>Integrity Verification</span>
+          <span class="text-emerald-400 flex items-center"><i class="fa-solid fa-circle-check mr-1"></i> Exact Substring Match</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: INGESTION / LOAD RAW DATA ================= -->
+  <div id="ingestion-modal" class="fixed inset-0 z-50 transition-opacity duration-300 flex items-center justify-center p-4 hidden">
+    <div onclick="closeIngestionModal()" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <div class="relative bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-database text-indigo-400"></i>
+          <h3 class="text-sm font-bold text-white">AIONOS Assignment Data Pack Manager</h3>
+        </div>
+        <button onclick="closeIngestionModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4 flex-1 text-xs">
+        <div class="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-indigo-300 text-[11px] leading-relaxed">
+          <i class="fa-solid fa-circle-info mr-1"></i>
+          Select a source channel from the assignment data pack below to review or paste the exact text. 
+          When saved, the engine extracts commitments with zero hallucination.
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-medium mb-1">Select Source Channel</label>
+          <select id="modal-source-select" onchange="loadSelectedSourceToModal()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-200 focus:outline-none focus:border-indigo-500">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-medium mb-1">Verbatim Content (From Assignment Data Pack)</label>
+          <textarea id="modal-source-text" rows="10" placeholder="Paste exact text from meeting transcript, email thread, or voice note here..." 
+                    class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 font-mono focus:outline-none focus:border-indigo-500"></textarea>
+        </div>
+      </div>
+
+      <div class="px-6 py-4 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between">
+        <span id="modal-status-msg" class="text-xs text-slate-400"></span>
+        <div class="flex items-center space-x-2">
+          <button onclick="closeIngestionModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition">
+            Close
+          </button>
+          <button onclick="saveModalSourceContent()" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition shadow">
+            Save & Re-Extract Actions
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js?v=2"></script>
+</body>
+</html>

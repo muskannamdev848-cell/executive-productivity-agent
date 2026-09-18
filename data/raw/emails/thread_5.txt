@@ -1,0 +1,14 @@
+Mon 21 Sep, 10:15 AM — From: facilities@veridian-corp.example — To: All Staff
+“Reminder: the Mumbai office lease renewal requires an authorized signature by Friday, 25 September.”
+
+Tue 22 Sep, 11:00 AM — From: raghav.sethi@veridian-corp.example — To: arjun.malhotra@veridian-corp.example, divya.rao@veridian-corp.example
+“Following up from the sync — has anyone confirmed who’s signing off on the Mumbai renewal? Don’t think it’s been assigned.”
+
+Wed 23 Sep, 9:30 AM — From: divya.rao@veridian-corp.example — To: raghav.sethi@veridian-corp.example, arjun.malhotra@veridian-corp.example
+“Not on my end — I believe this typically sits with Facilities directly, not us.”
+
+Thu 24 Sep, 4:00 PM — From: facilities@veridian-corp.example — To: All Staff
+“Second reminder: signature is still pending. Deadline is Friday, 25 September, end of day.”
+
+Thu 24 Sep, 4:45 PM — From: raghav.sethi@veridian-corp.example — To: arjun.malhotra@veridian-corp.example
+“This is now one day out and still unowned — can you confirm who’s handling it?”
